@@ -212,3 +212,5 @@ dim(coffee_m)
 
 # Review a portion of the matrix
 coffee_m[2587:2590, 148:150]
+
+saveRDS(coffee_m, "coffee_m.RDS")
