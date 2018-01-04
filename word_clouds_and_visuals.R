@@ -8,6 +8,7 @@
 #'     
 #' ---
 #'
+#'
 #' ### Frequent Terms with `tm`  
 
 # Read saved matrix, coerced from tdm
@@ -27,4 +28,32 @@ barplot(term_frequency[1:10], col = "tan", las = 2 )
 
 #' ### Frequent Terms with `qdap`
 
+# Load qdap
+suppressWarnings(
+  suppressPackageStartupMessages(
+    library(qdap)
+  )
+)
 
+# Import text data
+tweets <- read.csv("./data/coffee.csv", stringsAsFactors = FALSE)
+
+# Create frequency
+frequency <- freq_terms(
+  tweets$text, 
+  top = 10,
+  at.least = 3,
+  stopwords = "Top200Words")
+
+# Make a frequency barchart
+plot(frequency)
+
+# Create frequency2
+frequency2 <- freq_terms(
+  tweets$text, 
+  top = 10,
+  at.least = 3,
+  stopwords = tm::stopwords("english"))
+
+# Make a frequency2 barchart
+plot(frequency2)

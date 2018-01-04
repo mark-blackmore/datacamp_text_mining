@@ -178,7 +178,6 @@ clean_corp[[227]][1]
 # Print out the same tweet in original form
 tweets$text[227]
 
-
 #' ### Make a Document-term Matrix  
 
 # Create the dtm from the corpus: coffee_dtm
@@ -214,3 +213,4 @@ dim(coffee_m)
 coffee_m[2587:2590, 148:150]
 
 saveRDS(coffee_m, "coffee_m.RDS")
+saveRDS(tweets$text, "tweets_text.RDS")
