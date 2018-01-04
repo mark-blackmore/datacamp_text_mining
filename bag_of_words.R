@@ -159,7 +159,6 @@ complete_doc
 
 #' ### Apply Preprocessing Steps to a Corpus  
  
-
 # Alter the function code to match the instructions
 clean_corpus <- function(corpus){
   corpus <- tm_map(corpus, removePunctuation)

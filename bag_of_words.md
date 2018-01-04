@@ -1,7 +1,7 @@
 Quick Taste of Text Mining
 ================
 Mark Blackmore
-2018-01-03
+2018-01-04
 
 -   [Quick Overview](#quick-overview)
 -   [Load Some Text](#load-some-text)
@@ -420,3 +420,8 @@ coffee_m[2587:2590, 148:150]
     ##   stand          0   0   0
     ##   star           0   0   0
     ##   starbucks      0   0   0
+
+``` r
+saveRDS(coffee_m, "coffee_m.RDS")
+saveRDS(tweets$text, "tweets_text.RDS")
+```
