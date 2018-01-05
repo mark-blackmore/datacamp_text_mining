@@ -1,5 +1,5 @@
 #' ---
-#' title: Word Clouds and More Interesting Visuals
+#' title: Word Clouds
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: 
@@ -156,3 +156,29 @@ chardonnay_freqs <- data.frame(term = names(chardonnay_words),
 # Create a wordcloud for the values in word_freqs
 wordcloud(chardonnay_freqs$term, chardonnay_freqs$num,
           max.word = 50, colors = "red")
+
+#' ### Improve Word Cloud Colors
+
+# Print the list of colors
+colors()[1:10]
+
+# Print the wordcloud with the specified colors
+wordcloud(chardonnay_freqs$term, 
+          chardonnay_freqs$num, 
+          max.words = 100, 
+          colors = c("grey80", "darkgoldenrod1", "tomato"))
+
+#' ### Use Prebuilt Color Palettes
+# List the available colors
+display.brewer.all()
+
+# Create purple_orange
+purple_orange <- brewer.pal(10, "PuOr")
+
+# Drop 2 faintest colors
+purple_orange <- purple_orange[-(1:2)]
+
+# Create a wordcloud with purple_orange palette
+wordcloud(chardonnay_freqs$term, chardonnay_freqs$num, 
+          max.words = 100, colors = purple_orange)
+

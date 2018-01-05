@@ -1,13 +1,15 @@
 Word Clouds and More Interesting Visuals
 ================
 Mark Blackmore
-2018-01-04
+2018-01-05
 
 -   [Frequent Terms with `tm`](#frequent-terms-with-tm)
 -   [Frequent Terms with `qdap`](#frequent-terms-with-qdap)
 -   [A Simple Word Cloud](#a-simple-word-cloud)
 -   [Stop Words and Word Clouds](#stop-words-and-word-clouds)
 -   [Plot the Better Word Cloud](#plot-the-better-word-cloud)
+-   [Improve Word Cloud Colors](#improve-word-cloud-colors)
+-   [Use rebuilt Color Palettes](#use-rebuilt-color-palettes)
 
 ### Frequent Terms with `tm`
 
@@ -197,3 +199,47 @@ wordcloud(chardonnay_freqs$term, chardonnay_freqs$num,
 ```
 
 ![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+
+### Improve Word Cloud Colors
+
+``` r
+# Print the list of colors
+colors()[1:10]
+```
+
+    ##  [1] "white"         "aliceblue"     "antiquewhite"  "antiquewhite1"
+    ##  [5] "antiquewhite2" "antiquewhite3" "antiquewhite4" "aquamarine"   
+    ##  [9] "aquamarine1"   "aquamarine2"
+
+``` r
+# Print the wordcloud with the specified colors
+wordcloud(chardonnay_freqs$term, 
+          chardonnay_freqs$num, 
+          max.words = 100, 
+          colors = c("grey80", "darkgoldenrod1", "tomato"))
+```
+
+![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+
+### Use rebuilt Color Palettes
+
+``` r
+# List the available colors
+display.brewer.all()
+```
+
+![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+
+``` r
+# Create purple_orange
+purple_orange <- brewer.pal(10, "PuOr")
+
+# Drop 2 faintest colors
+purple_orange <- purple_orange[-(1:2)]
+
+# Create a wordcloud with purple_orange palette
+wordcloud(chardonnay_freqs$term, chardonnay_freqs$num, 
+          max.words = 100, colors = purple_orange)
+```
+
+![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
