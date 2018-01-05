@@ -5,6 +5,7 @@ Mark Blackmore
 
 -   [Find Common Words](#find-common-words)
 -   [Visualize Common Words](#visualize-common-words)
+-   [Visualize Dissimilar Words](#visualize-dissimilar-words)
 -   [Session info](#session-info)
 
 ``` r
@@ -68,6 +69,25 @@ commonality.cloud(all_m, max.words = 100, colors = "steelblue1")
 ```
 
 ![](word_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+
+### Visualize Dissimilar Words
+
+``` r
+# Clean the corpus
+all_clean <- clean_corpus(all_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_clean)
+
+# Give the columns distinct names
+colnames(all_tdm) <- c("coffee", "chardonnay")
+
+# Create all_m
+all_m <- as.matrix(all_tdm)
+
+# Create comparison cloud - runs on DataCamp, but not here
+## comparison.cloud(all_m, colors = c("orange", "blue"), max.words = 0)
+```
 
 ------------------------------------------------------------------------
 

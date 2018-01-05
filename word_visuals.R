@@ -63,7 +63,22 @@ all_m <- as.matrix(all_tdm)
 # Print a commonality cloud
 commonality.cloud(all_m, max.words = 100, colors = "steelblue1")
 
+#' ### Visualize Dissimilar Words
 
+# Clean the corpus
+all_clean <- clean_corpus(all_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_clean)
+
+# Give the columns distinct names
+colnames(all_tdm) <- c("coffee", "chardonnay")
+
+# Create all_m
+all_m <- as.matrix(all_tdm)
+
+# Create comparison cloud - runs on DataCamp, but not here
+## comparison.cloud(all_m, colors = c("orange", "blue"), max.words = 0)
 
 
 #' -------------
