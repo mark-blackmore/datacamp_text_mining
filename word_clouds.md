@@ -10,6 +10,7 @@ Mark Blackmore
 -   [Plot the Better Word Cloud](#plot-the-better-word-cloud)
 -   [Improve Word Cloud Colors](#improve-word-cloud-colors)
 -   [Use Prebuilt Color Palettes](#use-prebuilt-color-palettes)
+-   [Session info](#session-info)
 
 ### Frequent Terms with `tm`
 
@@ -243,3 +244,53 @@ wordcloud(chardonnay_freqs$term, chardonnay_freqs$num,
 ```
 
 ![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
+
+------------------------------------------------------------------------
+
+Session info
+------------
+
+``` r
+sessionInfo()   
+```
+
+    ## R version 3.4.2 (2017-09-28)
+    ## Platform: x86_64-w64-mingw32/x64 (64-bit)
+    ## Running under: Windows 10 x64 (build 16299)
+    ## 
+    ## Matrix products: default
+    ## 
+    ## locale:
+    ## [1] LC_COLLATE=English_United States.1252 
+    ## [2] LC_CTYPE=English_United States.1252   
+    ## [3] LC_MONETARY=English_United States.1252
+    ## [4] LC_NUMERIC=C                          
+    ## [5] LC_TIME=English_United States.1252    
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## other attached packages:
+    ## [1] wordcloud_2.5          tm_0.7-3               NLP_0.1-11            
+    ## [4] qdap_2.2.9             RColorBrewer_1.1-2     qdapTools_1.3.3       
+    ## [7] qdapRegex_0.7.2        qdapDictionaries_1.0.6
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] gtools_3.5.0        venneuler_1.1-0     slam_0.1-40        
+    ##  [4] reshape2_1.4.2      rJava_0.9-9         reports_0.1.4      
+    ##  [7] colorspace_1.3-2    htmltools_0.3.6     yaml_2.1.14        
+    ## [10] chron_2.3-51        XML_3.98-1.9        rlang_0.1.2        
+    ## [13] glue_1.1.1          bindrcpp_0.2        bindr_0.1          
+    ## [16] plyr_1.8.4          stringr_1.2.0       munsell_0.4.3      
+    ## [19] gtable_0.2.0        evaluate_0.10.1     labeling_0.3       
+    ## [22] knitr_1.17          gender_0.5.1        parallel_3.4.2     
+    ## [25] xlsxjars_0.6.1      Rcpp_0.12.13        backports_1.1.1    
+    ## [28] scales_0.5.0        gdata_2.18.0        plotrix_3.7        
+    ## [31] xlsx_0.5.7          openNLPdata_1.5.3-4 gridExtra_2.3      
+    ## [34] ggplot2_2.2.1       digest_0.6.12       stringi_1.1.5      
+    ## [37] dplyr_0.7.4         grid_3.4.2          rprojroot_1.2      
+    ## [40] tools_3.4.2         bitops_1.0-6        magrittr_1.5       
+    ## [43] RCurl_1.95-4.8      lazyeval_0.2.0      tibble_1.3.4       
+    ## [46] pkgconfig_2.0.1     xml2_1.1.1          data.table_1.10.4-2
+    ## [49] assertthat_0.2.0    rmarkdown_1.6       openNLP_0.2-6      
+    ## [52] R6_2.2.2            igraph_1.1.2        compiler_3.4.2

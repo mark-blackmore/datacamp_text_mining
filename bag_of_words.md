@@ -1,7 +1,7 @@
 Quick Taste of Text Mining
 ================
 Mark Blackmore
-2018-01-04
+2018-01-05
 
 -   [Quick Overview](#quick-overview)
 -   [Load Some Text](#load-some-text)
@@ -15,6 +15,7 @@ Mark Blackmore
 -   [Apply Preprocessing Steps to a Corpus](#apply-preprocessing-steps-to-a-corpus)
 -   [Make a Document-term Matrix](#make-a-document-term-matrix)
 -   [Make a Term-document Matrix](#make-a-term-document-matrix)
+-   [Session info](#session-info)
 
 ### Quick Overview
 
@@ -425,3 +426,54 @@ coffee_m[2587:2590, 148:150]
 saveRDS(coffee_m, "coffee_m.RDS")
 saveRDS(tweets$text, "tweets_text.RDS")
 ```
+
+------------------------------------------------------------------------
+
+Session info
+------------
+
+``` r
+sessionInfo()   
+```
+
+    ## R version 3.4.2 (2017-09-28)
+    ## Platform: x86_64-w64-mingw32/x64 (64-bit)
+    ## Running under: Windows 10 x64 (build 16299)
+    ## 
+    ## Matrix products: default
+    ## 
+    ## locale:
+    ## [1] LC_COLLATE=English_United States.1252 
+    ## [2] LC_CTYPE=English_United States.1252   
+    ## [3] LC_MONETARY=English_United States.1252
+    ## [4] LC_NUMERIC=C                          
+    ## [5] LC_TIME=English_United States.1252    
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## other attached packages:
+    ## [1] tm_0.7-3               NLP_0.1-11             qdap_2.2.9            
+    ## [4] RColorBrewer_1.1-2     qdapTools_1.3.3        qdapRegex_0.7.2       
+    ## [7] qdapDictionaries_1.0.6
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] gtools_3.5.0        wordcloud_2.5       venneuler_1.1-0    
+    ##  [4] slam_0.1-40         reshape2_1.4.2      rJava_0.9-9        
+    ##  [7] reports_0.1.4       colorspace_1.3-2    SnowballC_0.5.1    
+    ## [10] htmltools_0.3.6     yaml_2.1.14         chron_2.3-51       
+    ## [13] XML_3.98-1.9        rlang_0.1.2         glue_1.1.1         
+    ## [16] bindrcpp_0.2        bindr_0.1           plyr_1.8.4         
+    ## [19] stringr_1.2.0       munsell_0.4.3       gtable_0.2.0       
+    ## [22] evaluate_0.10.1     labeling_0.3        knitr_1.17         
+    ## [25] gender_0.5.1        parallel_3.4.2      xlsxjars_0.6.1     
+    ## [28] Rcpp_0.12.13        backports_1.1.1     scales_0.5.0       
+    ## [31] gdata_2.18.0        plotrix_3.7         xlsx_0.5.7         
+    ## [34] openNLPdata_1.5.3-4 gridExtra_2.3       ggplot2_2.2.1      
+    ## [37] digest_0.6.12       stringi_1.1.5       dplyr_0.7.4        
+    ## [40] grid_3.4.2          rprojroot_1.2       tools_3.4.2        
+    ## [43] bitops_1.0-6        magrittr_1.5        RCurl_1.95-4.8     
+    ## [46] lazyeval_0.2.0      tibble_1.3.4        pkgconfig_2.0.1    
+    ## [49] xml2_1.1.1          data.table_1.10.4-2 assertthat_0.2.0   
+    ## [52] rmarkdown_1.6       openNLP_0.2-6       R6_2.2.2           
+    ## [55] igraph_1.1.2        compiler_3.4.2

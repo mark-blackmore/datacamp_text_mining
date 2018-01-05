@@ -213,3 +213,9 @@ coffee_m[2587:2590, 148:150]
 
 saveRDS(coffee_m, "coffee_m.RDS")
 saveRDS(tweets$text, "tweets_text.RDS")
+
+#' -------------
+#'  
+#' ## Session info
+#+ show-sessionInfo
+sessionInfo()   

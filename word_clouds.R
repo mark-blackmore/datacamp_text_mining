@@ -182,3 +182,8 @@ purple_orange <- purple_orange[-(1:2)]
 wordcloud(chardonnay_freqs$term, chardonnay_freqs$num, 
           max.words = 100, colors = purple_orange)
 
+#' -------------
+#'  
+#' ## Session info
+#+ show-sessionInfo
+sessionInfo()   
