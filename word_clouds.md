@@ -1,4 +1,4 @@
-Word Clouds and More Interesting Visuals
+Word Clouds
 ================
 Mark Blackmore
 2018-01-05
@@ -9,7 +9,7 @@ Mark Blackmore
 -   [Stop Words and Word Clouds](#stop-words-and-word-clouds)
 -   [Plot the Better Word Cloud](#plot-the-better-word-cloud)
 -   [Improve Word Cloud Colors](#improve-word-cloud-colors)
--   [Use rebuilt Color Palettes](#use-rebuilt-color-palettes)
+-   [Use Prebuilt Color Palettes](#use-prebuilt-color-palettes)
 
 ### Frequent Terms with `tm`
 
@@ -37,7 +37,7 @@ term_frequency[1:10]
 barplot(term_frequency[1:10], col = "tan", las = 2 )
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
 
 ### Frequent Terms with `qdap`
 
@@ -63,7 +63,7 @@ frequency <- freq_terms(
 plot(frequency)
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
 
 ``` r
 # Create frequency2
@@ -77,7 +77,7 @@ frequency2 <- freq_terms(
 plot(frequency2)
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-2.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-2.png)
 
 ### A Simple Word Cloud
 
@@ -146,7 +146,7 @@ word_freqs <-  data.frame(term = names(term_frequency),
 wordcloud(word_freqs$term, word_freqs$num, max.word = 100, color = "red")
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
 
 ### Stop Words and Word Clouds
 
@@ -198,7 +198,7 @@ wordcloud(chardonnay_freqs$term, chardonnay_freqs$num,
           max.word = 50, colors = "red")
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ### Improve Word Cloud Colors
 
@@ -219,16 +219,16 @@ wordcloud(chardonnay_freqs$term,
           colors = c("grey80", "darkgoldenrod1", "tomato"))
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
-### Use rebuilt Color Palettes
+### Use Prebuilt Color Palettes
 
 ``` r
 # List the available colors
 display.brewer.all()
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 
 ``` r
 # Create purple_orange
@@ -242,4 +242,4 @@ wordcloud(chardonnay_freqs$term, chardonnay_freqs$num,
           max.words = 100, colors = purple_orange)
 ```
 
-![](word_clouds_and_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
+![](word_clouds_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
