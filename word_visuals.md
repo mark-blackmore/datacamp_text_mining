@@ -6,6 +6,7 @@ Mark Blackmore
 -   [Find Common Words](#find-common-words)
 -   [Visualize Common Words](#visualize-common-words)
 -   [Visualize Dissimilar Words](#visualize-dissimilar-words)
+-   [Word Association](#word-association)
 -   [Session info](#session-info)
 
 ``` r
@@ -88,6 +89,49 @@ all_m <- as.matrix(all_tdm)
 # Create comparison cloud - runs on DataCamp, but not here
 ## comparison.cloud(all_m, colors = c("orange", "blue"), max.words = 0)
 ```
+
+Here, DataCamp changes the all\_corpus or clean\_corpus function. The variables all\_tdm, and hecnce all\_m are not the same on DataCamp as those here. This script creates all\_tdm:
+
+`<<TermDocumentMatrix (terms: 3036, documents: 2)>>    Non-/sparse entries: 6072/0   Sparsity           : 0%   Maximal term length: 27   Weighting          : term frequency (tf)`
+
+DataCamp's version:
+`<<TermDocumentMatrix (terms: 5337, documents: 2)>>    Non-/sparse entries: 6016/4658   Sparsity           : 44%   Maximal term length: 179   Weighting          : term frequency (tf)`
+
+### Word Association
+
+``` r
+word_associate(coffee_tweets$text, match.string = c("barista"), 
+               stopwords = c(Top200Words, "coffee", "amp"), 
+               network.plot = TRUE, cloud.colors = c("gray85", "darkred"))
+```
+
+    ## Warning in text2color(words = V(g)$label, recode.words = target.words,
+    ## colors = label.colors): length of colors should be 1 more than length of
+    ## recode.words
+
+    ##   row group unit text                                                                                                                                
+    ## 1 544   all  544 RT @Barista_kyo: #coffee #latte #soylatte #thinkcoffee # # # # @ think coffee http://t.co/Hmy9RPRWTZ                                
+    ## 2 569   all  569 RT @ReversoSmith: What a beautiful mess! #portafilter #coffee #espresso #coffeemachine #barista #baristalife? http://t.co/ZODcTfP22Z
+    ## 3 658   all  658 The moment you realize your Starbucks barista gave you a regular iced Coffee when u asked 4 decaf. Shitty. Late night not planned.  
+    ## 4 931   all  931 Barista made my coffee wrong and still gave me both anyway #Starbucks #coffee #caffeine #upallnight http://t.co/iKCNwO8F6t          
+    ## 5 951   all  951 RT @FrankIero: hahaha @jamiasan :*gives Barista our Starbucks order* Barista: coffee? @jamiasan : yes, isn't this is a coffee store?
+
+    ## 
+    ## Match Terms
+    ## ===========
+
+    ## 
+    ## List 1:
+    ## baristakyo, barista, baristalife
+
+    ## 
+
+``` r
+# Add title
+title(main = "Barista Coffee Tweet Associations")
+```
+
+![](word_visuals_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ------------------------------------------------------------------------
 

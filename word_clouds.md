@@ -1,7 +1,7 @@
 Word Clouds
 ================
 Mark Blackmore
-2018-01-05
+2018-01-09
 
 -   [Frequent Terms with `tm`](#frequent-terms-with-tm)
 -   [Frequent Terms with `qdap`](#frequent-terms-with-qdap)
@@ -101,7 +101,7 @@ chardonnay_tweets <- tweets$text
 # Make a vector source: coffee_source
 chardonnay_source <- VectorSource(chardonnay_tweets)
 
-# Make a volatile corpus: coffee_corpus
+# Make a volatile corpus: chardonnay_corpus
 chardonnay_corpus <- VCorpus(chardonnay_source)
 
 # Pre-processing function
@@ -116,9 +116,10 @@ clean_corpus <- function(corpus){
 # Apply your customized function to the tweet_corp: clean_corp
 clean_corp <- clean_corpus(chardonnay_corpus)
 
-# Create a TDM from clean_corp: coffee_tdm
+# Create a TDM from clean_corp: chardonnay_tdm
 chardonnay_tdm <- TermDocumentMatrix(clean_corp)
 
+  
 chardonnay_m <- as.matrix(chardonnay_tdm)
 
 # Calculate the rowSums: term_frequenc

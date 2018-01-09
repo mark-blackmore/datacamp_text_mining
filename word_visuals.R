@@ -80,6 +80,30 @@ all_m <- as.matrix(all_tdm)
 # Create comparison cloud - runs on DataCamp, but not here
 ## comparison.cloud(all_m, colors = c("orange", "blue"), max.words = 0)
 
+#' Here, DataCamp changes the all_corpus or clean_corpus function. 
+#' The variables all_tdm, and hecnce all_m are not the same on DataCamp as those here.
+#' This script creates all_tdm:
+#'
+#' `<<TermDocumentMatrix (terms: 3036, documents: 2)>>  
+#'  Non-/sparse entries: 6072/0  
+#' Sparsity           : 0%  
+#' Maximal term length: 27  
+#' Weighting          : term frequency (tf)`
+#'  
+#' DataCamp's version:  
+#' `<<TermDocumentMatrix (terms: 5337, documents: 2)>>  
+#'  Non-/sparse entries: 6016/4658  
+#' Sparsity           : 44%  
+#' Maximal term length: 179  
+#' Weighting          : term frequency (tf)`
+#'
+#' ### Word Association
+word_associate(coffee_tweets$text, match.string = c("barista"), 
+               stopwords = c(Top200Words, "coffee", "amp"), 
+               network.plot = TRUE, cloud.colors = c("gray85", "darkred"))
+
+# Add title
+title(main = "Barista Coffee Tweet Associations")
 
 #' -------------
 #'  
