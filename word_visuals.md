@@ -1,7 +1,7 @@
 More Word Visuals
 ================
 Mark Blackmore
-2018-01-05
+2018-01-09
 
 -   [Find Common Words](#find-common-words)
 -   [Visualize Common Words](#visualize-common-words)
