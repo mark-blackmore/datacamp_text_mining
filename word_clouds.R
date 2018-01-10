@@ -96,7 +96,7 @@ clean_corp <- clean_corpus(chardonnay_corpus)
 # Create a TDM from clean_corp: chardonnay_tdm
 chardonnay_tdm <- TermDocumentMatrix(clean_corp)
 
-  
+# Chance tdm to matrix  
 chardonnay_m <- as.matrix(chardonnay_tdm)
 
 # Calculate the rowSums: term_frequenc
