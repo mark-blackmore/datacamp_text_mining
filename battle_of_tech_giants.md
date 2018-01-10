@@ -174,7 +174,10 @@ wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color = "blue")
 ```
 
     ## Warning in wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color
-    ## = "blue"): smart people could not be fit on page. It will not be plotted.
+    ## = "blue"): great benefits could not be fit on page. It will not be plotted.
+
+    ## Warning in wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color
+    ## = "blue"): fast paced could not be fit on page. It will not be plotted.
 
 ![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
 
@@ -437,7 +440,7 @@ top15_df <- data.frame(x = common_words[1:15, 1],
 
 # Create the pyramid plot
 pyramid.plot(top15_df$x, top15_df$y, 
-             labels = top15_df$labels, gap = 12, 
+             labels = top15_df$labels, gap = 15, 
              top.labels = c("Amzn", "Pro Words", "Google"), 
              main = "Words in Common", unit = NULL)
 ```

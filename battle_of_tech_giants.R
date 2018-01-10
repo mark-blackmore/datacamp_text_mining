@@ -243,6 +243,6 @@ top15_df <- data.frame(x = common_words[1:15, 1],
 
 # Create the pyramid plot
 pyramid.plot(top15_df$x, top15_df$y, 
-             labels = top15_df$labels, gap = 12, 
+             labels = top15_df$labels, gap = 15, 
              top.labels = c("Amzn", "Pro Words", "Google"), 
              main = "Words in Common", unit = NULL)
