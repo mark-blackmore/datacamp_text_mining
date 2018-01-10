@@ -7,6 +7,11 @@ Mark Blackmore
 -   [Make a distance matrix and dendrogram from a TDM](#make-a-distance-matrix-and-dendrogram-from-a-tdm)
 -   [Put it all together: a text based dendrogram](#put-it-all-together-a-text-based-dendrogram)
 -   [Dendrogram aesthetics](#dendrogram-aesthetics)
+-   [Using word association](#using-word-association)
+-   [Getting past single words](#getting-past-single-words)
+-   [How do bigrams affect word clouds?](#how-do-bigrams-affect-word-clouds)
+-   [Changing frequency weights](#changing-frequency-weights)
+-   [Capturing metadata](#capturing-metadata)
 
 ``` r
 # Load Packages
@@ -16,6 +21,8 @@ suppressWarnings(
     library(tm)
     library(wordcloud)
     library(dendextend)
+    library(tidyverse)
+    library(RWeka)
   })
 )
 ```
@@ -172,3 +179,170 @@ rect.dendrogram(hcd, k = 2, border = "grey50")
 ```
 
 ![](more_tm_skills_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+
+### Using word association
+
+``` r
+# Create associations
+associations <- findAssocs(tweets_tdm, "rose", 0.2)
+
+# View the venti associations
+associations
+```
+
+    ## $rose
+    ##        beauty         board        bushes   competition          fell 
+    ##          0.64          0.64          0.64          0.64          0.64 
+    ##         grace       meeting          moms         porch   wonderwines 
+    ##          0.64          0.64          0.64          0.64          0.64 
+    ##         fancy         https  januaryjames          live       winning 
+    ##          0.61          0.61          0.61          0.61          0.61 
+    ##          full        shiraz      cabernet         still        bottle 
+    ##          0.57          0.57          0.51          0.47          0.32 
+    ##           aug culminawinery     fantastic bordeauxstyle          just 
+    ##          0.29          0.28          0.25          0.24          0.24
+
+``` r
+# Create associations_df
+associations_df <- list_vect2df(associations)[, 2:3]
+
+# Plot the associations_df values (don't change this)
+ggplot(associations_df, aes(y = associations_df[, 1])) + 
+  geom_point(aes(x = associations_df[, 2]), 
+             data = associations_df, size = 3)
+```
+
+![](more_tm_skills_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+
+### Getting past single words
+
+``` r
+text_corp <- clean_corp
+
+# Make tokenizer function 
+tokenizer <- function(x) 
+  NGramTokenizer(x, Weka_control(min = 2, max = 2))
+
+# Create unigram_dtm
+unigram_dtm <- DocumentTermMatrix(text_corp)
+
+# Create bigram_dtm
+bigram_dtm <- DocumentTermMatrix(text_corp, control = list(tokenize = tokenizer))
+
+# Examine unigram_dtm
+unigram_dtm
+```
+
+    ## <<DocumentTermMatrix (documents: 1000, terms: 3140)>>
+    ## Non-/sparse entries: 8328/3131672
+    ## Sparsity           : 100%
+    ## Maximal term length: 530
+    ## Weighting          : term frequency (tf)
+
+``` r
+# Examine bigram_dtm
+bigram_dtm
+```
+
+    ## <<DocumentTermMatrix (documents: 1000, terms: 5546)>>
+    ## Non-/sparse entries: 8126/5537874
+    ## Sparsity           : 100%
+    ## Maximal term length: 535
+    ## Weighting          : term frequency (tf)
+
+### How do bigrams affect word clouds?
+
+``` r
+# Create bigram_dtm_m
+bigram_dtm_m <- as.matrix(bigram_dtm)
+
+# Create freq
+freq <- colSums(bigram_dtm_m)
+
+# Create bi_words
+bi_words <- names(freq)
+
+# Examine part of bi_words
+bi_words[2577:2587]
+```
+
+    ##  [1] "im liking"  "im longer"  "im north"   "im okay"    "im pearse" 
+    ##  [6] "im phone"   "im playing" "im pretty"  "im retar"   "im salty"  
+    ## [11] "im set"
+
+``` r
+# Plot a wordcloud
+wordcloud(bi_words, freq, max.words = 15)
+```
+
+![](more_tm_skills_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+
+### Changing frequency weights
+
+``` r
+# Create tf_tdm
+tf_tdm <- TermDocumentMatrix(text_corp)
+
+# Create tfidf_tdm
+tfidf_tdm <- TermDocumentMatrix(text_corp, control = list(weighting = weightTfIdf))
+
+# Create tf_tdm_m
+tf_tdm_m <- as.matrix(tf_tdm)
+
+# Create tfidf_tdm_m 
+tfidf_tdm_m <- as.matrix(tfidf_tdm)
+
+# Examine part of tf_tdm_m
+tf_tdm_m[508:509, 5:10]
+```
+
+    ##        Docs
+    ## Terms   5 6 7 8 9 10
+    ##   claim 0 0 0 0 0  0
+    ##   clam  0 0 0 0 0  0
+
+``` r
+# Examine part of tfidf_tdm_m
+tfidf_tdm_m[508:509, 5:10]
+```
+
+    ##        Docs
+    ## Terms   5 6 7 8 9 10
+    ##   claim 0 0 0 0 0  0
+    ##   clam  0 0 0 0 0  0
+
+### Capturing metadata
+
+``` r
+# Select specific columns
+tweets <- tweets[, c("X", "text", "screenName", "created")]
+
+# Rename columns
+names(tweets)[1] <- "doc_id"
+
+# Set the data frame source schema: docs
+docs <- DataframeSource(tweets)
+
+# Make a clean volatile corpus: text_corpus
+text_corpus <- clean_corpus(VCorpus(docs))
+
+# Print the first doc's doc_id  
+text_corpus[[1]]$meta$id
+```
+
+    ## [1] "1"
+
+``` r
+# Examine the first doc content
+text_corpus[[1]]$content
+```
+
+    ## [1] "rt oceanclub eilisohanlon stonyjim vonprond eilis im pearse st even can tell chardonnay smells like cats pee "
+
+``` r
+# Access the first doc metadata
+meta(text_corpus[1])
+```
+
+    ##        screenName             created
+    ## 1 KarenMMcCormack 2013-08-08 11:48:18
