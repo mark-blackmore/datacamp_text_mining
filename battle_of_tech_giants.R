@@ -156,7 +156,7 @@ hc <- hclust(dist(amzn_c_tdm2, method = "euclidean"), method = "complete")
 # Produce a plot of hc
 plot(hc)
 
-#' ### word association  
+#' ### Word association  
 
 # Create amzn_p_tdm
 amzn_p_tdm <- TermDocumentMatrix(amzn_pros_corp, control = list(tokenize = tokenizer))

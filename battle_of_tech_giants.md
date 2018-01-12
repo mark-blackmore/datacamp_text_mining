@@ -9,7 +9,7 @@ Mark Blackmore
 -   [Feature extraction & analysis: amzn\_pros](#feature-extraction-analysis-amzn_pros)
 -   [Feature extraction & analysis: amzn\_cons](#feature-extraction-analysis-amzn_cons)
 -   [amzn\_cons dendrogram](#amzn_cons-dendrogram)
--   [word association](#word-association)
+-   [Word association](#word-association)
 -   [Quick review of Google reviews](#quick-review-of-google-reviews)
 -   [Cage match! Amazon vs. Google pro reviews](#cage-match-amazon-vs.-google-pro-reviews)
 -   [Cage match! Amazon vs. Google con reviews](#cage-match-amazon-vs.-google-con-reviews)
@@ -176,10 +176,10 @@ wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color = "blue")
 ```
 
     ## Warning in wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color
-    ## = "blue"): good pay could not be fit on page. It will not be plotted.
+    ## = "blue"): people work could not be fit on page. It will not be plotted.
 
     ## Warning in wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color
-    ## = "blue"): great benefits could not be fit on page. It will not be plotted.
+    ## = "blue"): fast paced could not be fit on page. It will not be plotted.
 
 ![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
 
@@ -236,7 +236,7 @@ plot(hc)
 
 ![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-11-1.png)
 
-### word association
+### Word association
 
 ``` r
 # Create amzn_p_tdm
