@@ -1,7 +1,7 @@
 Battle of the tech giants for talent
 ================
 Mark Blackmore
-2018-01-10
+2018-01-11
 
 -   [Identifying the text sources](#identifying-the-text-sources)
 -   [Text organization](#text-organization)
@@ -11,6 +11,8 @@ Mark Blackmore
 -   [amzn\_cons dendrogram](#amzn_cons-dendrogram)
 -   [word association](#word-association)
 -   [Quick review of Google reviews](#quick-review-of-google-reviews)
+-   [Cage match! Amazon vs. Google pro reviews](#cage-match-amazon-vs.-google-pro-reviews)
+-   [Cage match! Amazon vs. Google con reviews](#cage-match-amazon-vs.-google-con-reviews)
 
 ``` r
 # Load Packages
@@ -174,10 +176,10 @@ wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color = "blue")
 ```
 
     ## Warning in wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color
-    ## = "blue"): great benefits could not be fit on page. It will not be plotted.
+    ## = "blue"): good pay could not be fit on page. It will not be plotted.
 
     ## Warning in wordcloud(names(amzn_p_freq), amzn_p_freq, max.words = 20, color
-    ## = "blue"): fast paced could not be fit on page. It will not be plotted.
+    ## = "blue"): great benefits could not be fit on page. It will not be plotted.
 
 ![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
 
@@ -388,13 +390,13 @@ comparison.cloud(all_m, colors = c("#F44336", "#2196f3"), max.words = 100)
 
 ![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-13-1.png)
 
-\#\#\# Cage match! Amazon vs. Google pro reviews
+### Cage match! Amazon vs. Google pro reviews
 
 ``` r
 # Create a_pros
 a_pros <- paste(amzn_pros, collapse = " ")
 
-# Create all_goog
+# Create all_pros
 all_pros <- c(g_pros, a_pros)
 all_pros_corpus <- VCorpus(VectorSource(all_pros))
 
@@ -402,7 +404,7 @@ all_pros_corpus <- VCorpus(VectorSource(all_pros))
 all_pros_corp <- tm_clean(all_pros_corpus)
 
 # Create all_tdm
-all_tdm <- TermDocumentMatrix(all_pros_corpus, control = list(tokenize = tokenizer))
+all_tdm <- TermDocumentMatrix(all_pros_corp, control = list(tokenize = tokenizer))
 
 # Name the columns of all_tdm
 colnames(all_tdm) <- c("Amazon_Pro", "Google_Pro")
@@ -411,14 +413,14 @@ all_tdm_m <- as.matrix(all_tdm)
 head(all_tdm_m)
 ```
 
-    ##             Docs
-    ## Terms        Amazon_Pro Google_Pro
-    ##   -- at               1          0
-    ##   -- awesome          1          0
-    ##   - access            1          0
-    ##   - amazing           1          0
-    ##   - but               1          1
-    ##   - do                0          1
+    ##                   Docs
+    ## Terms              Amazon_Pro Google_Pro
+    ##   ability customer          0          1
+    ##   ability iterate           0          1
+    ##   ability make              1          1
+    ##   ability see               0          1
+    ##   ability switch            1          0
+    ##   ability travel            1          0
 
 ``` r
 # Create common_words
@@ -446,5 +448,66 @@ pyramid.plot(top15_df$x, top15_df$y,
 ```
 
 ![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-14-1.png)
+
+    ## [1] 5.1 4.1 4.1 2.1
+
+### Cage match! Amazon vs. Google con reviews
+
+``` r
+# Create a_cons
+a_cons <- paste(amzn_cons, collapse = " ")
+
+# Create all_cons
+all_cons <- c(g_cons, a_cons)
+all_cons_corpus <- VCorpus(VectorSource(all_cons))
+
+# Create all_cons_corp
+all_cons_corp <- tm_clean(all_cons_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_cons_corp, control = list(tokenize = tokenizer))
+
+# Name the columns of all_tdm
+colnames(all_tdm) <- c("Amazon_Con", "Google_Con")
+
+all_tdm_m <- as.matrix(all_tdm)
+head(all_tdm_m)
+```
+
+    ##                  Docs
+    ## Terms             Amazon_Con Google_Con
+    ##   â<U+0080>¦â show                4          0
+    ##   aâ â<U+0080>¦â                  1          0
+    ##   abandon open             1          0
+    ##   ability advance          0          1
+    ##   able sacrifice           0          1
+    ##   able sit                 0          1
+
+``` r
+# Create common_words
+common_words <- subset(all_tdm_m, all_tdm_m[, 1] > 0 & all_tdm_m[, 2] > 0)
+
+# Create difference
+difference <- abs(common_words[,1] - common_words[,2])
+
+# Add difference to common_words
+common_words <- cbind(common_words,difference)
+
+# Order the data frame from most differences to least
+common_words <- common_words[order(common_words[,3], decreasing = TRUE), ]
+
+# Create top15_df
+top15_df <- data.frame(x = common_words[1:15, 1],
+                       y = common_words[1:15, 2],
+                       labels = rownames(common_words[1:15, ]))
+
+# Create the pyramid plot
+pyramid.plot(top15_df$x, top15_df$y, 
+             labels = top15_df$labels, gap = 12, 
+             top.labels = c("Amzn", "Con Words", "Google"), 
+             main = "Words in Common", unit = NULL)
+```
+
+![](battle_of_tech_giants_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-15-1.png)
 
     ## [1] 5.1 4.1 4.1 2.1

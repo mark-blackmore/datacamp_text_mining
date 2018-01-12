@@ -203,12 +203,12 @@ all_m <- as.matrix(all_tdm)
 # Build a comparison cloud
 comparison.cloud(all_m, colors = c("#F44336", "#2196f3"), max.words = 100)
 
-#'  ### Cage match! Amazon vs. Google pro reviews  
+#' ### Cage match! Amazon vs. Google pro reviews  
 
 # Create a_pros
 a_pros <- paste(amzn_pros, collapse = " ")
 
-# Create all_goog
+# Create all_pros
 all_pros <- c(g_pros, a_pros)
 all_pros_corpus <- VCorpus(VectorSource(all_pros))
 
@@ -216,7 +216,7 @@ all_pros_corpus <- VCorpus(VectorSource(all_pros))
 all_pros_corp <- tm_clean(all_pros_corpus)
 
 # Create all_tdm
-all_tdm <- TermDocumentMatrix(all_pros_corpus, control = list(tokenize = tokenizer))
+all_tdm <- TermDocumentMatrix(all_pros_corp, control = list(tokenize = tokenizer))
 
 # Name the columns of all_tdm
 colnames(all_tdm) <- c("Amazon_Pro", "Google_Pro")
@@ -246,3 +246,49 @@ pyramid.plot(top15_df$x, top15_df$y,
              labels = top15_df$labels, gap = 15, 
              top.labels = c("Amzn", "Pro Words", "Google"), 
              main = "Words in Common", unit = NULL)
+
+
+#' ### Cage match! Amazon vs. Google con reviews  
+
+# Create a_cons
+a_cons <- paste(amzn_cons, collapse = " ")
+
+# Create all_cons
+all_cons <- c(g_cons, a_cons)
+all_cons_corpus <- VCorpus(VectorSource(all_cons))
+
+# Create all_cons_corp
+all_cons_corp <- tm_clean(all_cons_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_cons_corp, control = list(tokenize = tokenizer))
+
+# Name the columns of all_tdm
+colnames(all_tdm) <- c("Amazon_Con", "Google_Con")
+
+all_tdm_m <- as.matrix(all_tdm)
+head(all_tdm_m)
+
+# Create common_words
+common_words <- subset(all_tdm_m, all_tdm_m[, 1] > 0 & all_tdm_m[, 2] > 0)
+
+# Create difference
+difference <- abs(common_words[,1] - common_words[,2])
+
+# Add difference to common_words
+common_words <- cbind(common_words,difference)
+
+# Order the data frame from most differences to least
+common_words <- common_words[order(common_words[,3], decreasing = TRUE), ]
+
+# Create top15_df
+top15_df <- data.frame(x = common_words[1:15, 1],
+                       y = common_words[1:15, 2],
+                       labels = rownames(common_words[1:15, ]))
+
+# Create the pyramid plot
+pyramid.plot(top15_df$x, top15_df$y, 
+             labels = top15_df$labels, gap = 12, 
+             top.labels = c("Amzn", "Con Words", "Google"), 
+             main = "Words in Common", unit = NULL)
+
