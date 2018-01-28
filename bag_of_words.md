@@ -1,12 +1,12 @@
 Quick Taste of Text Mining
 ================
 Mark Blackmore
-2018-01-05
+2018-01-27
 
 -   [Quick Overview](#quick-overview)
 -   [Load Some Text](#load-some-text)
--   [Make the Vector a VCrorpus Object (1)](#make-the-vector-a-vcrorpus-object-1)
--   [Make the Vector a VCrorpus Object (2)](#make-the-vector-a-vcrorpus-object-2)
+-   [Make the Vector a VCorpus Object (1)](#make-the-vector-a-vcorpus-object-1)
+-   [Make the Vector a VCorpus Object (2)](#make-the-vector-a-vcorpus-object-2)
 -   [Common Cleaning Functions from `tm`](#common-cleaning-functions-from-tm)
 -   [Cleaning with `qdap`](#cleaning-with-qdap)
 -   [All About Stopwords](#all-about-stopwords)
@@ -84,7 +84,7 @@ nrow(tweets)
 coffee_tweets <- tweets$text
 ```
 
-### Make the Vector a VCrorpus Object (1)
+### Make the Vector a VCorpus Object (1)
 
 ``` r
 # Load tm
@@ -98,7 +98,7 @@ suppressWarnings(
 coffee_source <- VectorSource(coffee_tweets)
 ```
 
-### Make the Vector a VCrorpus Object (2)
+### Make the Vector a VCorpus Object (2)
 
 ``` r
 # Make a volatile corpus: coffee_corpus

@@ -1,6 +1,6 @@
 #' ---
 #' title: Quick Taste of Text Mining
-#' author: "Mark Blackmore"
+#' author: "Mark Blackmore"  
 #' date: "`r format(Sys.Date())`"
 #' output: 
 #'   github_document:
@@ -42,7 +42,7 @@ nrow(tweets)
 # Isolate text from tweets: coffee_tweets
 coffee_tweets <- tweets$text
 
-#' ### Make the Vector a VCrorpus Object (1)  
+#' ### Make the Vector a VCorpus Object (1)  
 
 # Load tm
 suppressWarnings(
@@ -54,7 +54,7 @@ suppressWarnings(
 # Make a vector source: coffee_source
 coffee_source <- VectorSource(coffee_tweets)
 
-#' ### Make the Vector a VCrorpus Object (2)  
+#' ### Make the Vector a VCorpus Object (2)  
 
 # Make a volatile corpus: coffee_corpus
 coffee_corpus <- VCorpus(coffee_source)
